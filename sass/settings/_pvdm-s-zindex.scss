@@ -1,0 +1,21 @@
+/**
+ * Z-index master list
+ *
+ * Warning: Avoid customizing these values. They're used for a bird's eye view
+ * of components dependent on the z-axis and are designed to all work together.
+ *
+ */
+@import "eyeglass-pvdm-styles/settings";
+
+$zindex-navbar:            1000 !default;
+$zindex-dropdown:          1000 !default;
+$zindex-popover:           1060 !default;
+$zindex-tooltip:           1070 !default;
+$zindex-navbar-fixed:      1140 !default;
+
+
+$zindex-ocn:               1138 !default; // pvdm
+$zindex-nav:               1200 !default; // pvdm
+$zindex-modal-background:  2040 !default;
+$zindex-modal:             2050 !default;
+

@@ -1,0 +1,15 @@
+/**
+ * pvdmTabs
+ *
+ * extends .nav object
+ *
+ * Note: using !important here out of necesity to accomplish border effect on hover
+ */
+@import "eyeglass-pvdm-styles/settings";
+
+$nav-tabs-border-color:                           color('gray', 30);
+$nav-tabs-link-hover-border-color:                transparant; //color('gray', 10);
+$nav-tabs-active-link-hover-bg:                   $body-bg !default;
+$nav-tabs-active-link-hover-color:                color('gray', 30);
+$nav-tabs-active-link-hover-border-color:         color('gray', 30);
+
