@@ -5,11 +5,6 @@
  *
  * @TODO audit
  */
-@import "eyeglass-pvdm-styles/settings/pvdm-s-tables";
-@import "eyeglass-pvdm-styles/settings/pvdm-s-typography";
-@import "eyeglass-pvdm-styles/settings/pvdm-s-colors";
-
-@import "eyeglass-pvdm-styles/utilities/table-row";
 
 .table-body-striped>tbody:nth-child(odd)>tr>td,
 .table-body-striped>tbody:nth-child(odd)>tr>th {

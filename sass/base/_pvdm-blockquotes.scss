@@ -2,8 +2,6 @@
  * pvdm Blockquotes
  *
  */
-@include "eyeglass-pvdm-styles/settings/pvdm-s-typography";
-@include "eyeglass-pvdm-styles/settings/pvdm-s-blockquotes";
 
 blockquote {
   padding: ($line-height-computed / 2) $line-height-computed;
