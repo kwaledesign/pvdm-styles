@@ -1,7 +1,7 @@
 {
   "name": "pvdm-styles",
   "version": "0.0.1",
-  "description": "Sass eyeglass module for pvdm application styles",
+  "description": "eyeglass module for pvdm stylesheet framework",
   "license": "MIT",
   "author": {
     "name": "Sam Ashley",
