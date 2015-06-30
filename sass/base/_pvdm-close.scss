@@ -1,0 +1,62 @@
+/**
+ * pvdm Close Icons
+ *
+ */
+@import "eyeglass-pvdm-styles/settings";
+@import "eyeglass-pvdm-styles/utilities";
+
+.close {
+  float: right;
+  font-size: ($font-size-base * 1.5);
+  font-weight: $close-font-weight;
+  line-height: 1;
+  color: $close-color;
+  text-shadow: $close-text-shadow;
+  @include opacity(.2);
+
+  &:hover,
+  &:focus {
+    color: $close-color;
+    text-decoration: none;
+    cursor: pointer;
+    @include opacity(.5);
+  }
+
+  // [converter] extracted button& to button.close
+}
+
+// Additional properties for button version
+// iOS requires the button element instead of an anchor tag.
+// If you want the anchor version, it requires `href="#"`.
+// See https://developer.mozilla.org/en-US/docs/Web/Events/click#Safari_Mobile
+button.close {
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+}
+
+
+/**
+* inline edit close button
+*
+* 1. override bootstrap close class defaulting to float:left to float:none;
+* 2. override bootstrap styles on form controls and buttons
+* 3. using this modifier selector intentionally to override default '.close'
+*/
+
+//appears we don't use this anymore...commenting out for now... 
+//.close.close--inline { /* 3 */
+//  float: none !important; /* 1 */
+//  border: 1px solid darkred;
+//  border-left: none;
+//  background-color: lightpink;
+//  color: darkred;
+  // TODO: refactor this, shouldn't be hard coded...use a bootstrap var!!!
+//  border-top-right-radius: 3px !important; /* 2 */
+//  border-bottom-right-radius: 3px !important; /* 2 */
+//}
+
+
+

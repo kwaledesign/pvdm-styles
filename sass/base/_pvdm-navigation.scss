@@ -1,0 +1,381 @@
+/**
+ * Navs
+ *
+ * TODO: this is gross.
+ */
+@import "eyeglass-pvdm-styles/settings/pvdm-s-navigation";
+@import "eyeglass-pvdm-styles/settings/pvdm-s-typography";
+
+@import "eyeglass-pvdm-styles/utilities/clearfix";
+
+/**
+ * Base class
+ */
+.nav {
+  margin-bottom: 0;
+  padding-left: 0; // Override default ul/ol
+  list-style: none;
+  @include clearfix;
+
+  > li {
+    position: relative;
+    display: block;
+
+    > a {
+      position: relative;
+      display: block;
+      padding: $nav-link-padding;
+      &:hover,
+      &:focus {
+        text-decoration: none;
+        background-color: $nav-link-hover-bg;
+      }
+    }
+
+    // Disabled state sets text to gray and nukes hover/tab effects
+    &.disabled > a {
+      color: $nav-disabled-link-color;
+
+      &:hover,
+      &:focus {
+        color: $nav-disabled-link-hover-color;
+        text-decoration: none;
+        background-color: transparent;
+        cursor: $cursor-disabled;
+      }
+    }
+  }
+
+  // Open dropdowns
+  .open > a {
+    &,
+    &:hover,
+    &:focus {
+      background-color: $nav-link-hover-bg;
+      border-color: $link-color;
+    }
+  }
+}
+
+/**
+ * pvdmOffCanvasNav Vars
+ *
+ * (for the containing slide out drawer)
+ *
+ */
+$pvdmOffCanvasNav--background-color: #464646;
+
+/**
+ * navIcon
+ */
+
+$background: #ededed;
+$color: #e5e5e5;
+
+$navIcon-height: 30px;
+$navIcon-width: 30px;
+$height-line: 3px;
+
+$transition-time: 150ms;
+$rotation: 45deg;
+$translateY: ($navIcon-height / 4);  // '4' here is a magic number. TODO: refactor this
+$translateX: 0;
+
+
+
+.pvdm-nav-icon {
+  width:$navIcon-width;
+  height:$navIcon-height;
+  position:relative;
+  display:block;
+  outline: 0; // kill the link focus outline around the icon
+  cursor: pointer;  // necessary bc we omit the 'href' from navIcon to prevent browser following link without preventDefault in Angular  (see: http://stackoverflow.com/questions/10931315/how-to-preventdefault-on-anchor-tags ) TODO: TEST!!!
+
+  display:inline-block;
+  float:left;
+  width: $navIcon-width;
+  height: $navIcon-height;
+  margin-left: 16px;
+  margin-top: 16px;
+  margin-right: 16px;
+
+  .toggle-icon {
+    display:block;
+    color:white;
+    position:absolute;
+    top:0px;
+    left:0px;
+    margin-left:8px;
+    margin-top:8px;
+    }
+
+  .line {
+    display:block;
+    background:$color;
+    width:$navIcon-width;
+    height:$height-line;
+    position:absolute;
+    left:0;
+    border-radius: 0; //($height-line / 2); 
+    //@include pvdm-ease(all, $transition-time, $ease-out);
+    //transition: all $transition-time;
+    //-webkit-transition: all $transition-time;
+    //-moz-transition: all $transition-time;
+    &.line-1 {top:0;}
+    &.line-2 {top:25%;}
+    &.line-3 {top:50%;}
+  }
+  &:hover {
+     .line-1 {
+        transform: translateY($height-line / 2 * -1);
+        -webkit-transform: translateY($height-line / 2 * -1);
+        -moz-transform: translateY($height-line / 2 * -1);
+     }
+    .line-3 {
+        transform: translateY($height-line / 2);
+        -webkit-transform: translateY($height-line / 2);
+        -moz-transform: translateY($height-line / 2);
+    }  
+  }
+  &.active {
+    .line-1 {
+      transform: translateY($translateY) translateX($translateX) rotate($rotation);
+      -webkit-transform: translateY($translateY) translateX($translateX) rotate($rotation);
+      -moz-transform: translateY($translateY) translateX($translateX) rotate($rotation);
+    }
+    .line-2 {
+      opacity:0;
+    }
+    .line-3 {
+      transform: translateY($translateY * -1) translateX($translateX) rotate($rotation * -1);
+      -webkit-transform: translateY($translateY * -1) translateX($translateX) rotate($rotation * -1);
+      -moz-transform: translateY($translateY * -1) translateX($translateX) rotate($rotation * -1);
+    }
+  }
+}
+
+
+/**
+ * Custom abaqis nav styles
+ *
+ *
+ */
+
+
+/**
+* Navbar
+*
+* 1. overrid bs
+*
+*/
+.navbar-brand {
+  padding:0 !important; /* 1 */
+  cursor:pointer;
+}
+.navbar-brand-logo {
+  border-left: 1px solid gray;
+  display:inline-block;
+  background: url("/img/abaqis_logo_alt.svg") 10px 0 no-repeat;
+  height:50px;
+  width:140px;
+  text-indent:-9999px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+  .navbar-brand-logo {
+    background-image: url("/img/abaqis_logo_alt.svg");
+    background-size: 98px 29px;
+  }
+}
+
+/**
+* Nav menu
+*
+* 1. override bs
+*/
+.navbar-inverse {
+  background-color: #464646 !important;   /* 1 */
+}
+
+/* default nav link color */
+.navmenu nav a:link,
+.navmenu nav a:visited,
+.navmenu nav a:active {
+  color: $abaqis-blue !important;
+}
+/* manage ocn link color */
+.pvdm-manage nav a:link,
+.pvdm-manage nav a:visited,
+.pvdm-manage nav a:active {
+  color: $pvdm-manage-green !important;
+}
+/* assess ocn link color */
+.pvdm-assess nav a:link,
+.pvdm-assess nav a:visited,
+.pvdm-assess nav a:active {
+  color: $pvdm-assess-blue !important;
+}
+/* analyze ocn link color */
+.pvdm-analyze nav a:link,
+.pvdm-analyze nav a:visited,
+.pvdm-analyze nav a:active {
+  color: $pvdm-analyze-purple !important;
+}
+/* improve ocn link color */
+.pvdm-improve nav a:link,
+.pvdm-improve nav a:visited,
+.pvdm-improve nav a:active {
+  color: $pvdm-improve-pink !important;
+}
+
+.navmenu nav a {
+  //transition: .35s ease-in-out;
+  //@include pvdm-ease(all, 200ms, $ease-in-out);
+}
+.navmenu nav a:hover {
+  //background: color('gray', 30)er !important;
+  box-shadow: inset 500px 0 0 0 $pvdm-manage-green;
+  color: white !important;
+}
+.navmenu nav li.active a {
+  background: $pvdm-manage-green;
+  color: white !important;
+}
+
+/**
+ * pvdmOffCanvasNav Styles
+ *
+ */
+.pvdmOffCanvasNav {
+  z-index: $zindex-ocn;
+  background: $pvdmOffCanvasNav--background-color;
+  height: 100%;
+  width: 16em;
+  height: 100%;
+  padding-top: $navbar-height;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin-left: -16em;
+  overflow: scroll;
+  //@include pvdm-ease(margin-left, 150ms, $ease-in);
+  &.active {
+    margin-left: 0;
+    //@include pvdm-ease(margin-left, 150ms, $ease-out);
+  }
+}
+/*
+.l-pinnedNav {
+  @media screen and (min-width: 960px) {
+    margin-left: 16em !important;
+  }
+}
+*/
+/**
+ * Contextual Navigation Link Colors:
+ *
+ */
+.pvdmNavAccordian.pvdm-manage a {border-left: 5px solid $pvdm-manage-green;}
+.pvdmNavAccordian.pvdm-assess a {border-left: 5px solid $pvdm-assess-blue;} 
+.pvdmNavAccordian.pvdm-analyze a {border-left: 5px solid $pvdm-analyze-purple;} 
+.pvdmNavAccordian.pvdm-improve a {border-left: 5px solid $pvdm-improve-pink;} 
+
+/**
+ * pvdm-accordian-nav styles
+ *
+ * 1. provide new positioning context for absolutly positioning child elms
+ */
+.pvdmNavAccordian {
+  position:relative;    /* 1 */
+  li {
+    display:block;
+    padding:0;
+    margin:0;
+    border:0;
+    a { 
+      display:block;
+      padding:10px 15px;
+      margin:0;
+      outline:0; // kill the focus outline on nav links
+    }
+  }
+}
+
+
+
+/**
+ * Main Section Headers for Accordian
+ *
+ * ex: manage/assess/etc...
+ */
+.pvdmNavAccordian--heading {
+  display: block;
+  padding: 10px 15px;
+  background-color: darken($pvdmOffCanvasNav--background-color, 5%);
+  span {
+    color: color('gray', 40); 
+  }
+}
+
+// Within heading, strip any `h*` tag of its default margins for spacing.
+.pvdmNavAccordian--title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: ceil(($font-size-base * 1.125));
+  color: inherit;
+
+  > a,
+  > small,
+  > .small,
+  > small > a,
+  > .small > a {
+    color: inherit;
+  }
+}
+
+// List groups in panels
+// By default, space out list group content from panel headings to account for
+// any kind of custom content between the two.
+.pvdmNavAccordian {
+  > .list-group,
+  > .pvdmNavAccordian--collapse > .list-group {
+    margin-bottom: 0;
+    .list-group-item {
+      border-width: 0;
+      border-radius: 0;
+    }
+    // Add border top radius for first one
+    &:first-child {
+      .list-group-item:first-child {
+        border-top: 0;
+      }
+    }
+    // Add border bottom radius for last one
+    &:last-child {
+      .list-group-item:last-child {
+        border-bottom: 0;
+      }
+    }
+  }
+}
+// Collapse space between when there's no additional content.
+.pvdmNavAccordian--heading + .list-group {
+  .list-group-item:first-child {
+    border-top-width: 0;
+  }
+}
+
+// Collapsable panels (aka, accordion)
+//
+// Wrap a series of panels in `.panel-group` to turn them into an accordion with
+// the help of our collapse JavaScript plugin.
+.pvdmNavAccordian--group {
+  margin-bottom: $line-height-computed;
+// Tighten up margin so it's only between panels
+  .pvdmNavAccordian {
+    margin: 0;
+    //border-radius: $panel-border-radius;
+    + .pvdmNavAccordian {
+      margin-top: 0; //5px;
+    }
+  }
+}

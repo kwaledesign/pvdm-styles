@@ -1,0 +1,381 @@
+/**
+ * pvdm-dropdownToTab Styles
+ *
+ */
+/**
+ * TODO: REFACTOR THIS! THESE ARE DUPLICATED VARIABLE DECLARATIONS
+ */
+$nav-tabs-border-color:                           color('gray', 30);
+$nav-tabs-link-hover-border-color:                transparant; //color('gray', 10);
+$nav-tabs-active-link-hover-bg:                   $body-bg !default;
+$nav-tabs-active-link-hover-color:                color('gray', 30);
+$nav-tabs-active-link-hover-border-color:         color('gray', 30);
+
+
+
+ /**
+ //markup pattern:
+
+ <nav>
+    <a href="#" class="flyout-link pvdm-dropdownToTab pvdm-dropdownToTab--primary pvdm-dropdownToTab--medium">Options</a>
+    <ul class="pvdm-dropdownToTab-group nav nav-tabs">
+      <li class="active"><a href="#" class="pvdm-dropdownToTab pvdm-dropdownToTab--primary pvdm-dropdownToTab--medium">Option 1</a></li>
+      <li><a href="#" class="pvdm-dropdownToTab pvdm-dropdownToTab--primary pvdm-dropdownToTab--medium">Option 2</a></li>
+      <li><a href="#" class="pvdm-dropdownToTab pvdm-dropdownToTab--primary pvdm-dropdownToTab--medium">Option 3</a></li>
+      <li><a href="#" class="pvdm-dropdownToTab pvdm-dropdownToTab--primary pvdm-dropdownToTab--medium">Option 4</a></li>
+      <li><a href="#" class="pvdm-dropdownToTab pvdm-dropdownToTab--primary pvdm-dropdownToTab--medium">Option 5</a></li>
+    </ul>
+  </nav>
+
+  **/
+
+/** pvdm-dropdownToTab settings **/
+$pvdm-dropdownToTab--pvdm-dropdownToTab--primary-color: #00a6fc;
+$pvdm-dropdownToTab--pvdm-dropdownToTab--primary-color-hover: darken($pvdm-dropdownToTab--pvdm-dropdownToTab--primary-color, 10%);
+$pvdm-dropdownToTab--breakpoint: 30em;
+
+/** pvdm-dropdownToTab object styles **/
+
+@media screen and (max-width: $pvdm-dropdownToTab--breakpoint) {
+.pvdm-dropdownToTab {
+  margin: 0;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+}
+
+//.pvdm-dropdownToTab > 
+.pvdm-dropdownToTab-group {margin-top: -1px !important;}
+
+/** pvdm-dropdownToTab struture styles **/
+.pvdm-dropdownToTab.pvdm-dropdownToTab--medium {
+  font-size: 14px;
+  padding: 5px 9px;
+  //margin: 5px;
+  line-height: 2;
+}
+
+/** pvdm-dropdownToTab skin styles **/
+.pvdm-dropdownToTab.pvdm-dropdownToTab--primary {  
+  background-color: $pvdm-dropdownToTab--pvdm-dropdownToTab--primary-color;
+  color: gray;
+}
+.pvdm-dropdownToTab.pvdm-dropdownToTab--primary:hover {
+  color: #e6e6e6;
+  background-color: $pvdm-dropdownToTab--pvdm-dropdownToTab--primary-color-hover;
+}
+.pvdm-dropdownToTab.pvdm-dropdownToTab--primary:active, 
+.pvdm-dropdownToTab.pvdm-dropdownToTab--primary.active {
+  color: #e6e6e6;
+  text-shadow: none;
+  background-color: $pvdm-dropdownToTab--pvdm-dropdownToTab--primary-color-hover;
+}
+.pvdm-dropdownToTab.pvdm-dropdownToTab--primary.disabled, 
+.pvdm-dropdownToTab.pvdm-dropdownToTab--primary[disabled] {
+  opacity: 0.6;
+  color: #e6e6e6;
+  text-shadow: #006396 0 -1px 0;
+  background-color: #0084c9;
+  cursor: default;
+}
+
+// --------------------------------------
+// pvdm-dropdownToTab Group Styles
+// --------------------------------------
+
+/** pvdm-dropdownToTab-group Structure **/
+
+.pvdm-dropdownToTab-group li {
+
+}
+
+.pvdm-dropdownToTab-group li a.button, 
+.pvdm-dropdownToTab-group li button.button {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+// small screen button group styles -- change nested buttons to flyout menu
+
+  .pvdm-dropdownToTab-group {
+  .pvdm-dropdownToTab {
+    margin: 0;
+  }
+  .pvdm-dropdownToTab.pvdm-dropdownToTab--primary {
+    background-color: darken(white, 5%);
+    color: #999;
+    text-shadow: none;
+  }
+  .pvdm-dropdownToTab.pvdm-dropdownToTab--primary:hover {
+    color: #000;
+    text-shadow: none;
+    background-color: darken(white, 8%);
+    border-top: none;
+  }
+  .pvdm-dropdownToTab.pvdm-dropdownToTab--primary:active,
+  .pvdm-dropdownToTab.pvdm-dropdownToTab--primary.active {
+    color: #999;
+    border: none;
+    text-shadow: none;
+  }
+  .pvdm-dropdownToTab.pvdm-dropdownToTab--primary.disabled, 
+  .pvdm-dropdownToTab.pvdm-dropdownToTab--primary[disabled] {
+    opacity: 0.6;
+    color: #999;
+    text-shadow: none;
+    background-color: transparent;
+    border: none;
+    cursor: default;
+  }
+}
+
+
+// flyout styles
+// --------------------------------------
+
+// block level pvdm-dropdownToTab for small screens
+.flyout-link {
+  display: block;  
+}
+
+// css triangle
+.flyout-link:after {
+  // arrow - bs has a utility for this??
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border: solid 5px;
+  border-color: #fff transparent transparent transparent;
+  float: right;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.pvdm-dropdownToTab-group {
+  //clear: both;
+  @include transition(all 0.2s ease-out);
+}
+
+.js .pvdm-dropdownToTab-group {
+  overflow: hidden;
+  max-height: 0;
+}
+ 
+.pvdm-dropdownToTab-group.active{
+  max-height: 15em;
+}
+ 
+.pvdm-dropdownToTab-group > a.pvdm-dropdownToTab {
+  background: #ccc;
+  border: none;
+}
+
+.pvdm-dropdownToTab-group {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.pvdm-dropdownToTab-group li a {
+  display: block;
+  padding: 0.8em;
+}
+
+
+// Large Screen >>>horizontal pvdm-dropdownToTab group 
+// --------------------------------------------
+
+@media screen and (min-width: $pvdm-dropdownToTab--breakpoint) {
+  
+// pvdm-dropdownToTab skin
+  
+  .pvdm-dropdownToTab-group {
+    
+  & .pvdm-dropdownToTab.pvdm-dropdownToTab--primary {
+    //background-color: transparent; //#00a6fc;
+    //color: white;
+    
+  }
+  .pvdm-dropdownToTab.pvdm-dropdownToTab--primary:hover {
+    //color: #e6e6e6;
+    //background-color: lightgray; //#0074b0;
+    //border: 1px solid #0095e3;
+  }
+  .pvdm-dropdownToTab.pvdm-dropdownToTab--primary:active, 
+  .pvdm-dropdownToTab.pvdm-dropdownToTab--primary.active {
+    color: #e6e6e6;
+    text-shadow: none;
+    //margin-bottom: -15px !important;
+    //background-color: blue;
+  }
+  /*
+  .pvdm-dropdownToTab.pvdm-dropdownToTab--primary.disabled, 
+  .pvdm-dropdownToTab.pvdm-dropdownToTab--primary[disabled] {
+    opacity: 0.6;
+    color: #e6e6e6;
+    text-shadow: #006396 0 -1px 0;
+    background-color: #0084c9;
+    border: 1px solid #0095e3;
+    cursor: default;
+  }*/
+}
+  
+  
+  
+  a.flyout-link {
+    display: none;
+  }
+  .js .pvdm-dropdownToTab-group {
+    max-height: none;
+    
+  }
+  .pvdm-dropdownToTab-group {
+    border: 0;
+    //background-color: transparent;
+    border-bottom: 1px solid $nav-tabs-border-color;
+    
+    > li {
+      float: left;
+      // Make the list-items overlay the bottom border
+      margin-bottom: -1px;
+
+      // Actual tabs (as links)
+      > a { 
+        margin-right: 2px;
+        line-height: $line-height-base;
+        border: 1px solid transparent;
+        &:hover {
+          border-color: $nav-tabs-link-hover-border-color $nav-tabs-link-hover-border-color $nav-tabs-border-color;
+        }
+      }
+
+      // Active state, and its :hover to override normal :hover
+      &.active > a {
+        &,
+        &:hover,
+        &:focus {
+          //color: $nav-tabs-active-link-hover-color;
+          //background-color: $nav-tabs-active-link-hover-bg;
+          //border: 1px solid $nav-tabs-active-link-hover-border-color;
+          //border-bottom-color: transparent;
+          cursor: default;
+        }
+      }
+    }
+  }
+  
+  .pvdm-dropdownToTab-group li {
+    //display: inline-block;
+}
+  
+  .pvdm-dropdownToTab-group li a {
+    border: 0;
+  }
+}
+
+}// end media query 
+
+//
+// Navs
+// --------------------------------------------------
+
+
+// Base class
+// --------------------------------------------------
+@media screen and (min-width: $pvdm-dropdownToTab--breakpoint) {
+  .flyout-link {display:none;}
+  
+  //
+// Navs
+// --------------------------------------------------
+
+
+// Base class
+// --------------------------------------------------
+
+.nav {
+  margin-bottom: 0;
+  padding-left: 0; // Override default ul/ol
+  list-style: none;
+  @include clearfix;
+
+  > li {
+    position: relative;
+    display: block;
+
+    > a {
+      position: relative;
+      display: block;
+      padding: $nav-link-padding;
+      &:hover,
+      &:focus {
+        text-decoration: none;
+        background-color: $nav-link-hover-bg;
+      }
+    }
+
+    // Disabled state sets text to gray and nukes hover/tab effects
+    &.disabled > a {
+      color: $nav-disabled-link-color;
+
+      &:hover,
+      &:focus {
+        color: $nav-disabled-link-hover-color;
+        text-decoration: none;
+        background-color: transparent;
+        cursor: $cursor-disabled;
+      }
+    }
+  }
+
+  // Open dropdowns
+  .open > a {
+    &,
+    &:hover,
+    &:focus {
+      background-color: $nav-link-hover-bg;
+      border-color: $link-color;
+    }
+  }
+
+}
+
+ 
+
+  // Give the tabs something to sit on
+  .nav-tabs {
+    border-bottom: 1px solid $nav-tabs-border-color;
+    > li {
+      float: left;
+      // Make the list-items overlay the bottom border
+      margin-bottom: -1px;
+
+      // Actual tabs (as links)
+      > a {
+        margin-right: 2px;
+        line-height: $line-height-base;
+        border: 1px solid transparent;
+        border-radius: $border-radius-base $border-radius-base 0 0;
+        &:hover {
+          border-color: $nav-tabs-link-hover-border-color $nav-tabs-link-hover-border-color $nav-tabs-border-color;
+        }
+      }
+
+      // Active state, and its :hover to override normal :hover
+      &.active > a {
+        &,
+        &:hover,
+        &:focus {
+          color: $nav-tabs-active-link-hover-color;
+          background-color: $nav-tabs-active-link-hover-bg;
+          border: 1px solid $nav-tabs-active-link-hover-border-color;
+          border-bottom-color: transparent;
+          cursor: default;
+        }
+      }
+    }
+  } //
+}

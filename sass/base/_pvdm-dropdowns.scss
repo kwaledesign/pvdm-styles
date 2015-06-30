@@ -1,0 +1,425 @@
+/**
+ * Dropdowns
+ *
+ * Dropdown menu container and contents.
+ *
+ */
+@import "eyeglass-pvdm-styles/settings/pvdm-s-colors";
+
+//
+// Dropdown menus
+// --------------------------------------------------
+
+
+// Dropdown arrow/caret
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top:   $caret-width-base solid;
+  border-right: $caret-width-base solid transparent;
+  border-left:  $caret-width-base solid transparent;
+}
+
+// The dropdown wrapper (div)
+.dropup,
+.dropdown {
+  position: relative;
+}
+
+// Prevent the focus on the dropdown toggle when closing dropdowns
+.dropdown-toggle:focus {
+  outline: 0;
+}
+
+// The dropdown menu (ul)
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: $zindex-dropdown;
+  display: none; // none by default, but block on "open" of the menu
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0; // override default ul
+  list-style: none;
+  font-size: $font-size-base;
+  text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
+  background-color: $dropdown-bg;
+  border: 1px solid $dropdown-fallback-border; // IE8 fallback
+  border: 1px solid $dropdown-border;
+  border-radius: $border-radius-base;
+  @include box-shadow(0 6px 12px rgba(0,0,0,.175));
+  background-clip: padding-box;
+
+  // Aligns the dropdown menu to right
+  //
+  // Deprecated as of 3.1.0 in favor of `.dropdown-menu-[dir]`
+  &.pull-right {
+    right: 0;
+    left: auto;
+  }
+
+  // Dividers (basically an hr) within the dropdown
+  .divider {
+    @include nav-divider($dropdown-divider-bg);
+  }
+
+  // Links within the dropdown menu
+  > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: $line-height-base;
+    color: $dropdown-link-color;
+    white-space: nowrap; // prevent links from randomly breaking onto new lines
+  }
+}
+
+// Hover/Focus state
+.dropdown-menu > li > a {
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: $dropdown-link-hover-color;
+    background-color: $dropdown-link-hover-bg;
+  }
+}
+
+// Active state
+.dropdown-menu > .active > a {
+  &,
+  &:hover,
+  &:focus {
+    color: $dropdown-link-active-color;
+    text-decoration: none;
+    outline: 0;
+    background-color: $dropdown-link-active-bg;
+  }
+}
+
+// Disabled state
+//
+// Gray out text and ensure the hover/focus state remains gray
+
+.dropdown-menu > .disabled > a {
+  &,
+  &:hover,
+  &:focus {
+    color: $dropdown-link-disabled-color;
+  }
+
+  // Nuke hover/focus effects
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    background-color: transparent;
+    background-image: none; // Remove CSS gradient
+    @include reset-filter;
+    cursor: $cursor-disabled;
+  }
+}
+
+// Open state for the dropdown
+.open {
+  // Show the menu
+  > .dropdown-menu {
+    display: block;
+  }
+
+  // Remove the outline when :focus is triggered
+  > a {
+    outline: 0;
+  }
+}
+
+// Menu positioning
+//
+// Add extra class to `.dropdown-menu` to flip the alignment of the dropdown
+// menu with the parent.
+.dropdown-menu-right {
+  left: auto; // Reset the default from `.dropdown-menu`
+  right: 0;
+}
+// With v3, we enabled auto-flipping if you have a dropdown within a right
+// aligned nav component. To enable the undoing of that, we provide an override
+// to restore the default dropdown menu alignment.
+//
+// This is only for left-aligning a dropdown menu within a `.navbar-right` or
+// `.pull-right` nav component.
+.dropdown-menu-left {
+  left: 0;
+  right: auto;
+}
+
+// Dropdown section headers
+.dropdown-header {
+  display: block;
+  padding: 3px 20px;
+  font-size: $font-size-small;
+  line-height: $line-height-base;
+  color: $dropdown-header-color;
+  white-space: nowrap; // as with > li > a
+}
+
+// Backdrop to catch body clicks on mobile, etc.
+.dropdown-backdrop {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: ($zindex-dropdown - 10);
+}
+
+// Right aligned dropdowns
+.pull-right > .dropdown-menu {
+  right: 0;
+  left: auto;
+}
+
+// Allow for dropdowns to go bottom up (aka, dropup-menu)
+//
+// Just add .dropup after the standard .dropdown class and you're set, bro.
+// TODO: abstract this so that the navbar fixed styles are not placed here?
+
+.dropup,
+.navbar-fixed-bottom .dropdown {
+  // Reverse the caret
+  .caret {
+    border-top: 0;
+    border-bottom: $caret-width-base solid;
+    content: "";
+  }
+  // Different positioning for bottom up menu
+  .dropdown-menu {
+    top: auto;
+    bottom: 100%;
+    margin-bottom: 2px;
+  }
+}
+
+
+// Component alignment
+//
+// Reiterate per navbar.less and the modified component alignment there.
+
+@media (min-width: $grid-float-breakpoint) {
+  .navbar-right {
+    .dropdown-menu {
+      right: 0; left: auto;
+    }
+    // Necessary for overrides of the default right aligned menu.
+    // Will remove come v4 in all likelihood.
+    .dropdown-menu-left {
+      left: 0; right: auto;
+    }
+  }
+}
+
+
+
+/**
+ * pvdm-dropdown Styles
+ *
+ *
+ * @README used in the user-navigation dropdown in the header
+ * @TODO refactor for re-use? Look at bootstrap nav object styles...
+ */
+
+/** pvdm-dropdown settings **/
+$pvdm-dropdown--primary-color: gray;
+$pvdm-dropdown--primary-color-hover: darken($pvdm-dropdown--primary-color, 10%);
+
+/** pvdm-dropdown object styles **/
+
+
+.pvdm-dropdown {
+  margin: 0;
+  padding:10px;
+  display: inline-block;
+  cursor: pointer;
+  vertical-align: middle;
+  text-decoration: none;
+}
+
+.pvdm-dropdown-group {margin-top: -1px !important;}
+
+/** pvdm-dropdown struture styles **/
+.pvdm-dropdown.pvdm-dropdown--medium {
+  font-size: 14px;
+  padding: 5px 9px;
+  //margin: 5px;
+  line-height: 1.5;
+}
+
+/** pvdm-dropdown skin styles **/
+.pvdm-dropdown.pvdm-dropdown--primary {  
+  background-color: $pvdm-dropdown--primary-color;
+  color: white;
+}
+.pvdm-dropdown.pvdm-dropdown--primary:hover {
+  color: darken(white, 10%); //#e6e6e6;
+  background-color: $pvdm-dropdown--primary-color-hover;
+}
+.pvdm-dropdown.pvdm-dropdown--primary:active, 
+.pvdm-dropdown.pvdm-dropdown--primary.active {
+  color: darken($pvdm-dropdown--primary-color, 10%); //#e6e6e6;
+  background-color: $pvdm-dropdown--primary-color-hover;
+}
+.pvdm-dropdown.pvdm-dropdown--primary.disabled, 
+.pvdm-dropdown.pvdm-dropdown--primary[disabled] {
+  opacity: 0.6;
+  color: darken($pvdm-dropdown--primary-color, 10%); //#e6e6e6;
+  background-color: #0084c9;
+  cursor: default;
+}
+
+// --------------------------------------
+// pvdm-dropdown Group Styles
+// --------------------------------------
+
+/** pvdm-dropdown-group Structure **/
+
+.pvdm-dropdown-group li {
+
+}
+
+.pvdm-dropdown-group li a, 
+.pvdm-dropdown-group li {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+// small screen button group styles -- change nested buttons to flyout menu
+
+  .pvdm-dropdown-group {
+  .pvdm-dropdown {
+    margin: 0;
+  }
+  .pvdm-dropdown.pvdm-dropdown--primary {
+    background-color: darken(white, 5%);
+    color: #999;
+    text-shadow: none;
+  }
+  .pvdm-dropdown.pvdm-dropdown--primary:hover {
+    color: #000;
+    background-color: darken(white, 8%);
+  }
+  .pvdm-dropdown.pvdm-dropdown--primary:active,
+  .pvdm-dropdown.pvdm-dropdown--primary.active {
+    color: #999;
+  }
+  .pvdm-dropdown.pvdm-dropdown--primary.disabled, 
+  .pvdm-dropdown.pvdm-dropdown--primary[disabled] {
+    opacity: 0.6;
+    color: #999;
+    background-color: transparent;
+    cursor: default;
+  }
+}
+
+
+// flyout styles
+// --------------------------------------
+
+// block level pvdm-dropdown for small screens
+
+.pvdm-user-navigation--icon {   // reference hamburger sizing styles here
+  // structure
+  display: block;
+  //width: 100%;
+  height: $navbar-height;
+  float:right;
+  padding: 15px 25px 0 10px;
+  // skin
+  color: lightgray;
+  background-color: transparent;
+  border-left: 1px solid gray;
+  // hover/focus and active state
+  &:hover,
+  &:focus,
+  &.active {
+    color: color('gray', 50) !important;
+    background-color:color('gray', 80) !important;
+  }
+  // css triangle
+  // does this make your brain hurt? me too, this will help:
+  // http://codepen.io/chriscoyier/pen/lotjh
+  //
+  // bs has a utility for this??
+  &:after {
+    // structure
+    position:absolute;
+    top: 0px;
+    right: 0px;
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border: solid 5px;
+    margin-right: 10px;
+    margin-top: 20px;
+    // skin
+    border-color: #fff transparent transparent transparent;
+    &:hover,
+    &:focus {
+      color: color('gray', 50) !important;
+      background-color:color('gray', 80) !important;
+    }
+  }
+}
+
+/**
+ * Drop Down Items
+ *
+ */
+.pvdm-dropdown-group {
+  // default state
+  overflow: hidden;
+  max-height: 0;
+  // structure
+  list-style: none;
+  margin-left: 0;
+  margin-top: $navbar-height !important;  // push menu down below navbar
+  padding-left: 0;
+  // skin
+  @include clearfix;
+  background-color:color('gray', 80) !important;
+  //@include transition(all 0.2s ease-out);
+  //@include pvdm-ease(all, 200ms, $ease-out);
+  // group item structure
+  li a {
+    display: block;
+    padding: 0.8em;
+  }
+  // active state
+  &.active {
+    max-height: 15em;
+  }
+}
+
+/*
+.pvdm-dropdown-group > a.pvdm-dropdown {
+  background: #ccc;
+  border: none;
+}
+*/
+
+.pvdm-user-navigation {
+  position:absolute;
+  top:0;
+  right:0;
+  .pvdm-user-navigation--icon {
+    span {
+      width:100%;
+      height: 100%;
+      display:block;
+      padding-left: 10px;      // @TODO: var this...see above (it's used twice)
+    } 
+  }
+}

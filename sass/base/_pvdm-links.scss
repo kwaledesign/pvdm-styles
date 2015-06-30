@@ -1,0 +1,36 @@
+/**
+ * PVDM Links
+ *
+ */
+@import "eyeglass-pvdm-styles/settings/pvdm-s-links";
+
+a {
+  color: $link-color;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+
+  &:focus {
+    @include tab-focus;
+  }
+}
+
+/**
+ * pvdm link-row
+ *
+ */
+.pvdm-link-row {
+  td {
+    cursor:pointer;
+  }
+  td.ignore-click {
+    cursor:default;
+  }
+  // selected row
+  &.selected { background-color: color('gray', 10) !important; }
+}
+
