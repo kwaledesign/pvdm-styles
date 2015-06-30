@@ -1,0 +1,97 @@
+/**
+ * Colors
+ *
+ *
+ */
+
+//@import 'utilities/ibm-colors';
+
+
+/**
+ * abaqis section/feature colors
+ *
+ */
+$pvdm-improve-pink:    #ff3ca0;
+$pvdm-analyze-purple:  #9855d4;
+$pvdm-assess-blue:     #5596e6;
+$pvdm-manage-green:    #00b4a0;
+
+
+
+
+$abaqis-blue:            #4889C7;
+
+/**
+ * gray color stack
+ */
+
+
+/**
+ * UI State Color Pallet
+ *
+ */
+$brand-primary:         $abaqis-blue;  //darken(#428bca, 6.5%) !default;
+$brand-success:         #56b349 !default;
+$brand-info:            #0098cd !default;
+$brand-warning:         #f2b835 !default;
+$brand-danger:          #e33d43 !default;
+
+
+/**
+ * Form states and alerts
+ *
+ * Define colors for form feedback states and, by default, alerts.
+ */
+
+$state-success-text:             $brand-success; //#3c763d !default;
+$state-success-bg:               $brand-success; //#dff0d8 !default;
+$state-success-border:           $brand-success; //darken(adjust-hue($state-success-bg, -10), 5%) !default;
+
+$state-info-text:                $brand-info; //#31708f !default;
+$state-info-bg:                  $brand-info; //#d9edf7 !default;
+$state-info-border:              $brand-info; //darken(adjust-hue($state-info-bg, -10), 7%) !default;
+
+$state-warning-text:             $brand-warning; //#8a6d3b !default;
+$state-warning-bg:               $brand-warning; //#fcf8e3 !default;
+$state-warning-border:           $brand-warning; //darken(adjust-hue($state-warning-bg, -10), 5%) !default;
+
+$state-danger-text:              $brand-danger; //#a94442 !default;
+$state-danger-bg:                $brand-danger; //#f2dede !default;
+$state-danger-border:            $brand-danger; //darken(adjust-hue($state-danger-bg, -10), 5%) !default;
+
+
+//** Background color for `<body>`.
+$body-bg:               #fff !default;
+//** Global text color on `<body>`.
+$text-color:            color('gray', 60) !default;
+
+//** Global textual link color.
+$link-color:            $brand-primary !default;
+//** Link hover color set via `darken()` function.
+$link-hover-color:      darken($link-color, 15%) !default;
+
+//** Global color for active items (e.g., navs or dropdowns).
+$component-active-color:    #fff !default;
+//** Global background color for active items (e.g., navs or dropdowns).
+$component-active-bg:       $brand-primary !default;
+
+//** Background color for `<body>`.
+$body-bg:               #fff !default;
+//** Global text color on `<body>`.
+$text-color:            color('gray', 60) !default;
+
+//** Global color for active items (e.g., navs or dropdowns).
+$component-active-color:    #fff !default;
+//** Global background color for active items (e.g., navs or dropdowns).
+$component-active-bg:       $brand-primary !default;
+
+//** Text muted color
+$text-muted:                  color('gray', 40) !default;
+//** Abbreviations and acronyms border color
+$abbr-border-color:           color('gray', 30) !default;
+//** Headings small color
+$headings-small-color:        color('gray', 30) !default;
+
+//** Page header border color
+$page-header-border-color:    color('gray', 20) !default;
+
