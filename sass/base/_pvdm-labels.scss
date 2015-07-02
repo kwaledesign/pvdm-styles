@@ -14,14 +14,9 @@
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: .25em;
-
-  // [converter] extracted a& to a.label
-
-  // Empty labels collapse automatically (not available in IE8)
   &:empty {
     display: none;
   }
-
   // Quick fix for labels in buttons
   .btn & {
     position: relative;
@@ -29,7 +24,9 @@
   }
 }
 
-// Add hover effects, but only for links
+/** 
+ * Add hover effects, but only for links
+ */
 a.label {
   &:hover,
   &:focus {
@@ -39,9 +36,24 @@ a.label {
   }
 }
 
-// Colors
-// Contextual variations (linked labels get darker on :hover)
+/**
+ * Label variant mixin
+ *
+ */
+@mixin label-variant($color) {
+  &[href] {
+    &:hover,
+    &:focus {
+      background-color: darken($color, 10%);
+    }
+  }
+}
 
+/**
+ * Label variants
+ *
+ * contextual variations (linked labels get darker on :hover)
+ */
 .label-default {
   @include label-variant($label-default-bg);
 }
@@ -65,3 +77,4 @@ a.label {
 .label-danger {
   @include label-variant($label-danger-bg);
 }
+
