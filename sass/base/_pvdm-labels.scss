@@ -41,6 +41,11 @@ a.label {
  *
  */
 @mixin label-variant($color) {
+
+  // init color var to be overriden when calling mixin, 
+  // value doesn't matter here just has to be a color or mixin will puke
+  $color: red; 
+
   &[href] {
     &:hover,
     &:focus {
