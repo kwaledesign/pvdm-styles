@@ -1,11 +1,56 @@
 /**
  * pvdm Animations
  *
+ * TODO: replace temp animations with pvdm-ease lib
+ *
  */
+
+/** begin temp animation styles **/
+
+//
+// Component animations
+// --------------------------------------------------
+
+// Heads up!
+//
+// We don't use the `.opacity()` mixin here since it causes a bug with text
+// fields in IE7-8. Source: https://github.com/twbs/bootstrap/pull/3552.
+
+.fade {
+  opacity: 0;
+  @include transition(opacity .15s linear);
+  &.in {
+    opacity: 1;
+  }
+}
+
+.collapse {
+  display: none;
+
+  &.in      { display: block; }
+  // [converter] extracted tr&.in to tr.collapse.in
+  // [converter] extracted tbody&.in to tbody.collapse.in
+}
+
+tr.collapse.in    { display: table-row; }
+
+tbody.collapse.in { display: table-row-group; }
+
+.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  @include transition-property(height, visibility);
+  @include transition-duration(.35s);
+  @include transition-timing-function(ease);
+}
+
+/** end temp animation styles **/
 
 /**
  * simple fade in helper class
  */
+/*
 .fade-in {
   -moz-animation: fadein 1s;
   -webkit-animation: fadein 1s;
@@ -27,18 +72,18 @@
   from {opacity:0}
   to {opacity:1}
   }
-
- /**
-  * Quick Out:
-  *
-  * 'quick-out' utility transition (ex: for icons)
-  * avoids "trigger element" interfering with the
-  * transition of injected DOM nodes
-  *
-  */
- //.animate-quickOut,
- //.animate.animate-quickOut,
- /*
+*/
+/**
+* Quick Out:
+*
+* 'quick-out' utility transition (ex: for icons)
+* avoids "trigger element" interfering with the
+* transition of injected DOM nodes
+*
+*/
+//.animate-quickOut,
+//.animate.animate-quickOut,
+/*
  .animate.animate-quickOut.ng-hide {
   -webkit-transition: none !important;
   transition: none !important;
@@ -64,36 +109,35 @@
 /**
  * Slide Animation
  */
+/*
 .slide.ng-enter, .slide.ng-leave {
   //@include pvdm-ease(all, 1000ms, $ease-out);
 }
-
-/* starting animations for enter */
+// starting animations for enter
 .slide.ng-enter {
   //@include pvdm-ease(all, 1000ms, $ease-out);
 } 
 
-/* terminal animations for enter */
+// terminal animations for enter
 .slide.ng-enter.ng-enter-active {
   //@include pvdm-ease(all, 1000ms, $ease-out);
 }
 
-/* starting animations for leave */
+// starting animations for leave
 .slide.ng-leave {
   //@include pvdm-ease(all, 1ms, $ease-out);
 }
 
-/* terminal animations for leave */
+// terminal animations for leave
 .slide.ng-leave.ng-leave-active {
   //@include pvdm-ease(all, 1ms, $ease-out);
 }
 
-/* Have to set height explicity on ui-view 
-to prevent collapsing during animation*/
+// Have to set height explicity on ui-view to prevent collapsing during animation
 .well[ui-view]{
  //height: 65px; 
 }
-
+*/
 /*****
 .fade-in {
   -moz-animation: fadein 1s;
@@ -118,61 +162,37 @@ to prevent collapsing during animation*/
   }
 ****/
 
-
+/*
 .ui-view-container {
   //position: relative;
 }
 
 [ui-view].ng-enter, [ui-view].ng-leave {
-  /*
-  -webkit-transition:all .5s ease-in-out;
-	-moz-transition:all .5s ease-in-out;
-	-o-transition:all .5s ease-in-out;
-	transition:all .5s ease-in-out;
-*/
-  @include pvdm-ease(opacity, 350ms, $ease-out);
+  //@include pvdm-ease(opacity, 350ms, $ease-out); // -webkit-transition:all .5s ease-in-out;
 }
-
+*/
+/*
 [ui-view].ng-enter {
   opacity: 0;
-  @include pvdm-ease(opacity, 350ms, $ease-out);
-  /*
-  -webkit-transform:scale3d(0.5, 0.5, 0.5);
-  -moz-transform:scale3d(0.5, 0.5, 0.5);
-  transform:scale3d(0.5, 0.5, 0.5);
-  */
+  @include pvdm-ease(opacity, 350ms, $ease-out); //-webkit-transform:scale3d(0.5, 0.5, 0.5);
 }
 
 [ui-view].ng-enter-active {
   opacity: 1;
-  @include pvdm-ease(opacity, 350ms, $ease-out);
-  /*
-  -webkit-transform:scale3d(1, 1, 1);
-  -moz-transform:scale3d(1, 1, 1);
-  transform:scale3d(1, 1, 1);
-  */
+  @include pvdm-ease(opacity, 350ms, $ease-out); //-webkit-transform:scale3d(1, 1, 1);
 }
-
+*/
+/*
 [ui-view].ng-leave {
   opacity: 1;
-  /*padding-left: 0px;*/
-  //@include pvdm-ease(opacity, 350ms, $ease-out);
-  /*
-  -webkit-transform:translate3d(0, 0, 0);
-  -moz-transform:translate3d(0, 0, 0);
-  transform:translate3d(0, 0, 0);
-  */
+  //padding-left: 0px;
+  //@include pvdm-ease(opacity, 350ms, $ease-out); //-webkit-transform:translate3d(0, 0, 0);
 }
-
+*/
+/*
 [ui-view].ng-leave-active {
   opacity: 0;
-  /*padding-left: 100px;*/
-  //@include pvdm-ease(opacity, 150ms, $ease-out);
-  /*
-  -webkit-transform:translate3d(100px, 0, 0);
-  -moz-transform:translate3d(100px, 0, 0);
-  transform:translate3d(100px, 0, 0);
-  */
+  //padding-left: 100px;
+  //@include pvdm-ease(opacity, 150ms, $ease-out); //-webkit-transform:translate3d(100px, 0, 0);
 }
-
-
+*/
