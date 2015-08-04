@@ -77,9 +77,14 @@ $rotation: 45deg;
 $translateY: ($navIcon-height / 4);  // '4' here is a magic number. TODO: refactor this
 $translateX: 0;
 
-
-
 .pvdm-nav-icon {
+  width:$navIcon-width * 2;
+  height:100%;
+  margin:0;
+  padding:0;
+}
+
+.pvdm-nav-icon--link {
   width:$navIcon-width;
   height:$navIcon-height;
   position:relative;
