@@ -182,12 +182,6 @@ $translateX: 0;
   width:140px;
   text-indent:-9999px;
 }
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
-  .navbar-brand-logo {
-    background-image: url("/img/abaqis_logo_alt.svg");
-    background-size: 98px 29px;
-  }
-}
 
 /**
 * Nav menu
