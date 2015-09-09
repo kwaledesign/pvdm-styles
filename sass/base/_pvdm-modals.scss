@@ -163,3 +163,42 @@
 @media (min-width: $screen-md-min) {
   .modal-lg { width: $modal-lg; }
 }
+
+/**
+ * Confirm Modal
+ *
+ * used on user delete and user disable confirmation modals
+ */
+.pvdm-confirm-modal--icon-wrapper {
+  //position:relative;
+  width: $font-size-h1 *4;
+  height: $font-size-h1 *4;
+  //float:left; 
+  display:block;
+  padding: 10px 5px;
+  margin:0 auto;
+  @media (min-width: $confirm-modal-bp) {
+    display:inline;
+    margin:0 10px 0 0;
+    float:left;
+  }
+}
+
+.pvdm-confirm-modal--icon {
+  background-color: $brand-danger;
+  color: color('white', core);
+  font-size: $font-size-h1 * 1.5 !important;
+  border-radius: 50%;
+  width:$font-size-h1 * 3;
+  height:$font-size-h1 * 3;
+  //position:absolute;
+  padding:10px;
+  text-align:center;
+}
+
+.pvdm-confirm-modal--text {
+  display:block;
+  @media (min-width:$confirm-modal-bp) {
+    display:inline;
+  }
+}
