@@ -165,3 +165,17 @@ input[type="button"] {
     width: 100%;
   }
 }
+
+/**
+ * Gradient Button Modifier
+ *
+ * 1. This is necessary for FF...no idea why autoprefixer doesn't add it 
+ */
+.btn-gradient {
+  background: linear-gradient( center top, color('gray', 10) 5%, color('gray', 20) 100% );
+  background:-moz-linear-gradient( center top, color('gray', 10) 5%, color('gray', 20) 100% ); /* 1 */
+  &:hover {
+    background: linear-gradient( center bottom, color('gray', 10) 5%, color('gray', 20) 100% );
+    background:-moz-linear-gradient( center bottom, color('gray', 10) 5%, color('gray', 20) 100% ); /* 1 */
+  }
+}
