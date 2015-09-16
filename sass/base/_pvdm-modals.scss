@@ -199,6 +199,6 @@
 .pvdm-confirm-modal--text {
   display:block;
   @media (min-width:$confirm-modal-bp) {
-    display:inline;
+    display:table-cell;
   }
 }
