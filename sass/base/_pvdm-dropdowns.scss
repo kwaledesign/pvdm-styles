@@ -408,17 +408,3 @@ $pvdm-dropdown--primary-color-hover: darken($pvdm-dropdown--primary-color, 10%);
   border: none;
 }
 */
-
-.pvdm-user-navigation {
-  position:absolute;
-  top:0;
-  right:0;
-  .pvdm-user-navigation--icon {
-    span {
-      width:100%;
-      height: 100%;
-      display:block;
-      padding-left: 10px;      // @TODO: var this...see above (it's used twice)
-    } 
-  }
-}
