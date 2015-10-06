@@ -378,17 +378,17 @@ $pvdm-dropdown--primary-color-hover: darken($pvdm-dropdown--primary-color, 10%);
  *
  */
 .pvdm-dropdown-group {
-  // default state
   overflow: hidden;
   max-height: 0;
-  // structure
   list-style: none;
   margin-left: 0;
   margin-top: $navbar-height !important;  // push menu down below navbar
   padding-left: 0;
-  // skin
   @include clearfix;
   background-color:color('gray', 80) !important;
+  width:170px;
+  position:absolute;
+  right:0;
   //@include transition(all 0.2s ease-out);
   //@include pvdm-ease(all, 200ms, $ease-out);
   // group item structure
@@ -401,10 +401,3 @@ $pvdm-dropdown--primary-color-hover: darken($pvdm-dropdown--primary-color, 10%);
     max-height: 15em;
   }
 }
-
-/*
-.pvdm-dropdown-group > a.pvdm-dropdown {
-  background: #ccc;
-  border: none;
-}
-*/
